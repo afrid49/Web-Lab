@@ -1,40 +1,221 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>webtech</title>
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* center horizontally */
-        }
-        .logo-container {
-            margin-bottom: 20px;
-        }
-        .box-layout {
-            display: flex;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebTech Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+      color: #000000;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0c2724;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .logo-container {
+      margin-bottom: 20px;
+    }
+    .logo-container img {
+      width: 150px;
+    }
+    .box-layout {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .form-box {
+      background: #201b87;
+      padding: 40px;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgb(212, 47, 47);
+    }
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-box label {
+      display: block;
+      margin: 10px 0 5px;
+      color: white;
+    }
+    .form-box input,
+    .form-box select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #000000;
+    }
+    .gender-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    .form-box button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .form-box button:hover {
+      background: #0056b3;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .box-2,
+    .box-3 {
+      width: 200px;
+      border-radius: 10px;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      padding-top: 20px;
+    }
+    .box-2 {
+      background-color: rgb(0, 145, 255);
+      height: 200px;
+    }
+    .box-3 {
+      background-color: rgb(29, 106, 75);
+      height: 400px;
+    }
+    #error-message {
+      background-color: #000000;
+      border: 1px solid #f25353;
+      color: #ff6b6b;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      display: none;
+    }
+    #error-message.success {
+      border: 1px solid #4CAF50;
+      color: #4CAF50;
+    }
+    #error-message ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+    #error-message li {
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <!-- Logo centered over flex box -->
-        <div class="logo-container">
-            <img src="https://www.aiub.edu/Files/Templates/NewAIUB/assets/images/aiub-logo.svg" alt="AIUB Logo" style="width: 150px;">
-        </div>
-
-        <!-- Flex boxes -->
-        <div class="box-layout">
-            <div style="display: flex; flex-direction: column;">
-                <div style="background-color: rgb(52, 135, 135); height: 200px; width: 200px;">1</div>
-                <div style="background-color: rgb(29, 77, 116); height: 200px; width: 200px;">2</div>
-            </div>
-            <div style="background-color: rgb(29, 106, 75); height: 400px; width: 200px;">3</div>
-        </div>
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="https://www.aiub.edu/Files/Templates/NewAIUB/assets/images/aiub-logo.svg" alt="AIUB Logo" />
     </div>
-
+    <!-- Main Layout -->
+    <div class="box-layout">
+      <!-- Left: Form -->
+      <div class="form-box">
+        <h2>Registration Form</h2>
+        <!-- Error message display -->
+        <div id="error-message"></div>
+        <form id="registrationForm">
+          <label for="name">Name</label>
+          <input type="text" id="name"/>
+          <label for="email">Email</label>
+          <input type="email" id="email"/>
+          <label for="password">Password</label>
+          <input type="password" id="password"/>
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword"/>
+          <label>Gender</label>
+          <div class="gender-group">
+            <label><input type="radio" name="gender" value="male" /> Male</label>
+            <label><input type="radio" name="gender" value="female" /> Female</label>
+          </div>
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="">Select Country</option>
+            <option value="bd">Bangladesh</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="in">India</option>
+          </select>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob"/>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+      <!-- Right: Box 2 and Box 3 in column -->
+      <div class="right-column">
+        <div class="box-2">Box 2</div>
+        <div class="box-3">Box 3</div>
+      </div>
+    </div>
+  </div>
+  <!-- Validation -->
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const errorDiv = document.getElementById("error-message");
+      errorDiv.classList.remove("success");
+      errorDiv.style.display = "none";
+      errorDiv.innerHTML = "";
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const country = document.getElementById("country").value;
+      const dob = document.getElementById("dob").value;
+      const nameRegex = /^[A-Za-z\s]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let errors = [];
+      if (!nameRegex.test(name)) {
+        errors.push("Please enter a valid name (letters and spaces only).");
+      }
+      if (!emailRegex.test(email)) {
+        errors.push("Please enter a valid email address.");
+      }
+      if (password.length < 6) {
+        errors.push("Password must be at least 6 characters.");
+      }
+      if (password !== confirmPassword) {
+        errors.push("Passwords do not match.");
+      }
+      if (!gender) {
+        errors.push("Please select your gender.");
+      }
+      if (country === "") {
+        errors.push("Please select your country.");
+      }
+      if (dob === "") {
+        errors.push("Please select your date of birth.");
+      }
+      if (errors.length > 0) {
+        errorDiv.innerHTML = "<ul><li>" + errors.join("</li><li>") + "</li></ul>";
+        errorDiv.style.display = "block";
+      } else {
+        errorDiv.innerHTML = "Registration Successful!";
+        errorDiv.classList.add("success");
+        errorDiv.style.display = "block";
+        // Optionally reset the form
+        // document.getElementById("registrationForm").reset();
+      }
+    });
+  </script>
 </body>
 </html>
