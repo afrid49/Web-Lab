@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WebTech Layout</title>
@@ -118,6 +119,71 @@
       margin-bottom: 5px;
     }
   </style>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title>DOM</title>
+    <style>
+    button {
+  background: #FF4742;
+  color: white;
+  border: 1px solid #4b42ff;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;}
+    </style>
+</head>
+<body>      
+              <div id="house">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+              </div>  
+
+              <button type="button" id="button1">Button1</button>
+              <button type="button" id="button2">Button2</button>
+              <button type="button" id="button3">Button3</button>
+
+              <p>right click then inspect</p>
+
+        <script>
+                let x = document.getElementById("house");
+                let bt1 = document.getElementById("button1");
+                let bt2 = document.getElementById("button2");
+                let bt3 = document.getElementById("button3");
+
+                bt1.addEventListener('click', ()=>{
+                    console.log(x);
+                });             
+                bt2.addEventListener('click', ()=>{
+                    let roomExtra = document.createElement("p");
+                    x.appendChild(roomExtra);
+                    console.log("Added");
+                });
+                bt3.addEventListener('click', ()=>{
+                   let rooms = document.querySelectorAll("p");
+                   x.removeChild(rooms[0]);
+                   console.log("Removed");
+                })
+        </script>        
+</body>
+</html>
+=======
+    <title>webtech</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* center horizontally */
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .box-layout {
+            display: flex;
+        }
+    </style>
+>>>>>>> 2042d49b88b7eee415b652a1749e7689b6aa816f
 </head>
 <body>
   <div class="container">
@@ -219,3 +285,7 @@
   </script>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+>>>>>>> 51b69a8d6c93f2c1e2b491f4a7a6325ab8e65ca8
+>>>>>>> 2042d49b88b7eee415b652a1749e7689b6aa816f
