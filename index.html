@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WebTech Layout</title>
@@ -35,24 +33,31 @@
       width: 100%;
       max-width: 1000px;
     }
-    .form-box {
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-box, .login-box {
       background: #201b87;
       padding: 40px;
       width: 400px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgb(212, 47, 47);
     }
-    .form-box h2 {
+    .form-box h2, .login-box h2 {
       text-align: center;
       margin-bottom: 20px;
+      color: white;
     }
-    .form-box label {
+    .form-box label, .login-box label {
       display: block;
       margin: 10px 0 5px;
       color: white;
     }
     .form-box input,
-    .form-box select {
+    .form-box select,
+    .login-box input {
       width: 100%;
       padding: 10px;
       border-radius: 5px;
@@ -63,7 +68,7 @@
       gap: 10px;
       margin-top: 5px;
     }
-    .form-box button {
+    .form-box button, .login-box button {
       margin-top: 20px;
       padding: 12px;
       width: 100%;
@@ -73,7 +78,7 @@
       border-radius: 10px;
       cursor: pointer;
     }
-    .form-box button:hover {
+    .form-box button:hover, .login-box button:hover {
       background: #0056b3;
     }
     .right-column {
@@ -81,25 +86,18 @@
       flex-direction: column;
       gap: 20px;
     }
-    .box-2,
     .box-3 {
-      width: 200px;
+      background-color: rgb(29, 106, 75);
+      width: 400px;
+      height: 400px;
       border-radius: 10px;
       color: white;
       font-size: 20px;
       text-align: center;
       padding-top: 20px;
     }
-    .box-2 {
-      background-color: rgb(0, 145, 255);
-      height: 200px;
-    }
-    .box-3 {
-      background-color: rgb(29, 106, 75);
-      height: 400px;
-    }
     #error-message {
-      background-color: #000000;
+      background-color: #ff0000;
       border: 1px solid #f25353;
       color: #ff6b6b;
       padding: 10px;
@@ -118,72 +116,14 @@
     #error-message li {
       margin-bottom: 5px;
     }
-  </style>
-=======
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>DOM</title>
-    <style>
     button {
-  background: #FF4742;
-  color: white;
-  border: 1px solid #4b42ff;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;}
-    </style>
-</head>
-<body>      
-              <div id="house">
-                    <p></p>
-                    <p></p>
-                    <p></p>
-              </div>  
-
-              <button type="button" id="button1">Button1</button>
-              <button type="button" id="button2">Button2</button>
-              <button type="button" id="button3">Button3</button>
-
-              <p>right click then inspect</p>
-
-        <script>
-                let x = document.getElementById("house");
-                let bt1 = document.getElementById("button1");
-                let bt2 = document.getElementById("button2");
-                let bt3 = document.getElementById("button3");
-
-                bt1.addEventListener('click', ()=>{
-                    console.log(x);
-                });             
-                bt2.addEventListener('click', ()=>{
-                    let roomExtra = document.createElement("p");
-                    x.appendChild(roomExtra);
-                    console.log("Added");
-                });
-                bt3.addEventListener('click', ()=>{
-                   let rooms = document.querySelectorAll("p");
-                   x.removeChild(rooms[0]);
-                   console.log("Removed");
-                })
-        </script>        
-</body>
-</html>
-=======
-    <title>webtech</title>
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* center horizontally */
-        }
-        .logo-container {
-            margin-bottom: 20px;
-        }
-        .box-layout {
-            display: flex;
-        }
-    </style>
->>>>>>> 2042d49b88b7eee415b652a1749e7689b6aa816f
+      background: #FF4742;
+      color: white;
+      border: 1px solid #4b42ff;
+      border-radius: 6px;
+      box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -193,46 +133,90 @@
     </div>
     <!-- Main Layout -->
     <div class="box-layout">
-      <!-- Left: Form -->
-      <div class="form-box">
-        <h2>Registration Form</h2>
-        <!-- Error message display -->
-        <div id="error-message"></div>
-        <form id="registrationForm">
-          <label for="name">Name</label>
-          <input type="text" id="name"/>
-          <label for="email">Email</label>
-          <input type="email" id="email"/>
-          <label for="password">Password</label>
-          <input type="password" id="password"/>
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword"/>
-          <label>Gender</label>
-          <div class="gender-group">
-            <label><input type="radio" name="gender" value="male" /> Male</label>
-            <label><input type="radio" name="gender" value="female" /> Female</label>
-          </div>
-          <label for="country">Country</label>
-          <select id="country">
-            <option value="">Select Country</option>
-            <option value="bd">Bangladesh</option>
-            <option value="us">United States</option>
-            <option value="uk">United Kingdom</option>
-            <option value="in">India</option>
-          </select>
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob"/>
-          <button type="submit">Register</button>
-        </form>
+      <!-- Left Column: Registration & Login -->
+      <div class="left-column">
+        <!-- Registration Form -->
+        <div class="form-box">
+          <h2>Registration Form</h2>
+          <div id="error-message"></div>
+          <form id="registrationForm">
+            <label for="name">Name</label>
+            <input type="text" id="name"/>
+            <label for="email">Email</label>
+            <input type="email" id="email"/>
+            <label for="password">Password</label>
+            <input type="password" id="password"/>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword"/>
+            <label>Gender</label>
+            <div class="gender-group">
+              <label><input type="radio" name="gender" value="male" /> Male</label>
+              <label><input type="radio" name="gender" value="female" /> Female</label>
+            </div>
+            <label for="country">Country</label>
+            <select id="country">
+              <option value="">Select Country</option>
+              <option value="bd">Bangladesh</option>
+              <option value="us">United States</option>
+              <option value="uk">United Kingdom</option>
+              <option value="in">India</option>
+            </select>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob"/>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <!-- Login Form -->
+        <div class="login-box">
+          <h2>Login</h2>
+          <form id="loginForm">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail"/>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword"/>
+            <button type="submit">Login</button>
+          </form>
+        </div>
       </div>
-      <!-- Right: Box 2 and Box 3 in column -->
+      <!-- Right Column: Only Box 3 -->
       <div class="right-column">
-        <div class="box-2">Box 2</div>
-        <div class="box-3">Box 3</div>
+        <div class="box-3">
+          <h2>Content</h2>
+          <table style="width: 100%; color: rgb(255, 255, 255); border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="border: 1px solid white; padding: 10px;">Field</th>
+                <th style="border: 1px solid white; padding: 10px;">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid white; padding: 10px;">Name</td>
+                <td style="border: 1px solid white; padding: 10px;">afrid</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid white; padding: 10px;">Email</td>
+                <td style="border: 1px solid white; padding: 10px;">afrid@gmail.com</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid white; padding: 10px;">Country</td>
+                <td style="border: 1px solid white; padding: 10px;">Bangladesh</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid white; padding: 10px;">Gender</td>
+                <td style="border: 1px solid white; padding: 10px;">Male</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid white; padding: 10px;">DOB</td>
+                <td style="border: 1px solid white; padding: 10px;">2000-01-01</td>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </div>
   </div>
-  <!-- Validation -->
+
+  <!-- JS Validation -->
   <script>
     document.getElementById("registrationForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -240,6 +224,7 @@
       errorDiv.classList.remove("success");
       errorDiv.style.display = "none";
       errorDiv.innerHTML = "";
+
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -247,30 +232,19 @@
       const gender = document.querySelector('input[name="gender"]:checked');
       const country = document.getElementById("country").value;
       const dob = document.getElementById("dob").value;
+
       const nameRegex = /^[A-Za-z\s]+$/;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
       let errors = [];
-      if (!nameRegex.test(name)) {
-        errors.push("Please enter a valid name (letters and spaces only).");
-      }
-      if (!emailRegex.test(email)) {
-        errors.push("Please enter a valid email address.");
-      }
-      if (password.length < 6) {
-        errors.push("Password must be at least 6 characters.");
-      }
-      if (password !== confirmPassword) {
-        errors.push("Passwords do not match.");
-      }
-      if (!gender) {
-        errors.push("Please select your gender.");
-      }
-      if (country === "") {
-        errors.push("Please select your country.");
-      }
-      if (dob === "") {
-        errors.push("Please select your date of birth.");
-      }
+      if (!nameRegex.test(name)) errors.push("Please enter a valid name (letters and spaces only).");
+      if (!emailRegex.test(email)) errors.push("Please enter a valid email address.");
+      if (password.length < 6) errors.push("Password must be at least 6 characters.");
+      if (password !== confirmPassword) errors.push("Passwords do not match.");
+      if (!gender) errors.push("Please select your gender.");
+      if (country === "") errors.push("Please select your country.");
+      if (dob === "") errors.push("Please select your date of birth.");
+
       if (errors.length > 0) {
         errorDiv.innerHTML = "<ul><li>" + errors.join("</li><li>") + "</li></ul>";
         errorDiv.style.display = "block";
@@ -278,14 +252,16 @@
         errorDiv.innerHTML = "Registration Successful!";
         errorDiv.classList.add("success");
         errorDiv.style.display = "block";
-        // Optionally reset the form
-        // document.getElementById("registrationForm").reset();
       }
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const loginEmail = document.getElementById("loginEmail").value;
+      const loginPassword = document.getElementById("loginPassword").value;
+      alert("Login attempt with Email: " + loginEmail + " and Password: " + loginPassword);
+      // You can extend this by comparing with values from registration
     });
   </script>
 </body>
 </html>
-<<<<<<< HEAD
-=======
->>>>>>> 51b69a8d6c93f2c1e2b491f4a7a6325ab8e65ca8
->>>>>>> 2042d49b88b7eee415b652a1749e7689b6aa816f
