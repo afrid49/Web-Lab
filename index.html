@@ -126,6 +126,7 @@
   </style>
 </head>
 <body>
+  
   <div class="container">
     <!-- Logo -->
     <div class="logo-container">
@@ -139,22 +140,22 @@
         <div class="form-box">
           <h2>Registration Form</h2>
           <div id="error-message"></div>
-          <form id="registrationForm">
+          <form id="registrationForm" action="process.php" method="POST">
             <label for="name">Name</label>
-            <input type="text" id="name"/>
+            <input type="text" name="name"/>
             <label for="email">Email</label>
-            <input type="email" id="email"/>
+            <input type="email" name="email"/>
             <label for="password">Password</label>
-            <input type="password" id="password"/>
+            <input type="password" name="password"/>
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword"/>
+            <input type="password" name="confirmPassword"/>
             <label>Gender</label>
             <div class="gender-group">
               <label><input type="radio" name="gender" value="male" /> Male</label>
               <label><input type="radio" name="gender" value="female" /> Female</label>
             </div>
             <label for="country">Country</label>
-            <select id="country">
+            <select name="country">
               <option value="">Select Country</option>
               <option value="bd">Bangladesh</option>
               <option value="us">United States</option>
@@ -162,7 +163,8 @@
               <option value="in">India</option>
             </select>
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob"/>
+            <input type="date" name="dob"/>
+            
             <button type="submit">Register</button>
           </form>
         </div>
@@ -171,9 +173,9 @@
           <h2>Login</h2>
           <form id="loginForm">
             <label for="loginEmail">Email</label>
-            <input type="email" id="loginEmail"/>
+            <input type="email" name="loginEmail"/>
             <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword"/>
+            <input type="password" name="loginPassword"/>
             <button type="submit">Login</button>
           </form>
         </div>
@@ -192,23 +194,23 @@
             <tbody>
               <tr>
                 <td style="border: 1px solid white; padding: 10px;">Name</td>
-                <td style="border: 1px solid white; padding: 10px;">afrid</td>
+                <td style="border: 1px solid white; padding: 10px;"></td>
               </tr>
               <tr>
                 <td style="border: 1px solid white; padding: 10px;">Email</td>
-                <td style="border: 1px solid white; padding: 10px;">afrid@gmail.com</td>
+                <td style="border: 1px solid white; padding: 10px;"></td>
               </tr>
               <tr>
                 <td style="border: 1px solid white; padding: 10px;">Country</td>
-                <td style="border: 1px solid white; padding: 10px;">Bangladesh</td>
+                <td style="border: 1px solid white; padding: 10px;"></td>
               </tr>
               <tr>
                 <td style="border: 1px solid white; padding: 10px;">Gender</td>
-                <td style="border: 1px solid white; padding: 10px;">Male</td>
+                <td style="border: 1px solid white; padding: 10px;"></td>
               </tr>
               <tr>
                 <td style="border: 1px solid white; padding: 10px;">DOB</td>
-                <td style="border: 1px solid white; padding: 10px;">2000-01-01</td>
+                <td style="border: 1px solid white; padding: 10px;"></td>
               </tr>
             </tbody>
           </table>
@@ -217,51 +219,62 @@
   </div>
 
   <!-- JS Validation -->
-  <script>
-    document.getElementById("registrationForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const errorDiv = document.getElementById("error-message");
-      errorDiv.classList.remove("success");
-      errorDiv.style.display = "none";
-      errorDiv.innerHTML = "";
-
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-      const gender = document.querySelector('input[name="gender"]:checked');
-      const country = document.getElementById("country").value;
-      const dob = document.getElementById("dob").value;
-
-      const nameRegex = /^[A-Za-z\s]+$/;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      let errors = [];
-      if (!nameRegex.test(name)) errors.push("Please enter a valid name (letters and spaces only).");
-      if (!emailRegex.test(email)) errors.push("Please enter a valid email address.");
-      if (password.length < 6) errors.push("Password must be at least 6 characters.");
-      if (password !== confirmPassword) errors.push("Passwords do not match.");
-      if (!gender) errors.push("Please select your gender.");
-      if (country === "") errors.push("Please select your country.");
-      if (dob === "") errors.push("Please select your date of birth.");
-
-      if (errors.length > 0) {
-        errorDiv.innerHTML = "<ul><li>" + errors.join("</li><li>") + "</li></ul>";
-        errorDiv.style.display = "block";
-      } else {
-        errorDiv.innerHTML = "Registration Successful!";
-        errorDiv.classList.add("success");
-        errorDiv.style.display = "block";
+   <script>
+  document.getElementById("registrationForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const errorDiv = document.getElementById("error-message");
+    errorDiv.classList.remove("success");
+    errorDiv.style.display = "none";
+    errorDiv.innerHTML = "";
+  
+    const name = form.elements["name"].value;
+    const email = form.elements["email"].value;
+    const password = form.elements["password"].value;
+    const confirmPassword = form.elements["confirmPassword"].value;
+    const gender = form.querySelector('input[name="gender"]:checked');
+    const country = form.elements["country"].value;
+    const dob = form.elements["dob"].value;
+  
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    let errors = [];
+    if (!nameRegex.test(name)) errors.push("Please enter a valid name (letters and spaces only).");
+    if (!emailRegex.test(email)) errors.push("Please enter a valid email address.");
+    if (password.length < 6) errors.push("Password must be at least 6 characters.");
+    if (password !== confirmPassword) errors.push("Passwords do not match.");
+    if (!gender) errors.push("Please select your gender.");
+    if (country === "") errors.push("Please select your country.");
+    if (dob === "") errors.push("Please select your date of birth.");
+    else {
+      const birthDate = new Date(dob);
+      const today = new Date();
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
       }
-    });
-
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const loginEmail = document.getElementById("loginEmail").value;
-      const loginPassword = document.getElementById("loginPassword").value;
-      alert("Login attempt with Email: " + loginEmail + " and Password: " + loginPassword);
-      // You can extend this by comparing with values from registration
-    });
+      if (age < 18) errors.push("You must be at least 18 years old to register.");
+    }
+    if (errors.length > 0) {
+      errorDiv.innerHTML = "<ul><li>" + errors.join("</li><li>") + "</li></ul>";
+      errorDiv.style.display = "block";
+    } else {
+      errorDiv.innerHTML = "Registration Successful!";
+      errorDiv.classList.add("success");
+      errorDiv.style.display = "block";
+      this.submit();
+    }
+  });
+  
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const loginEmail = form.elements["loginEmail"].value;
+    const loginPassword = form.elements["loginPassword"].value;
+    alert("Login attempt with Email: " + loginEmail + " and Password: " + loginPassword);
+  });
   </script>
 </body>
 </html>
