@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Registration information</title>
+  <title>Registration Information</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -44,14 +44,47 @@
   </style>
 </head>
 <body>
-<div class="receipt">
-  <h2>Registration information</h2>
-  <p><span class="label">Name:</span> <?php echo htmlspecialchars($_POST['name']); ?></p>
-  <p><span class="label">Email:</span> <?php echo htmlspecialchars($_POST['email']); ?></p>
-  <p><span class="label">Gender:</span> <?php echo htmlspecialchars($_POST['gender']); ?></p>
-  <p><span class="label">Country:</span> <?php echo htmlspecialchars($_POST['country']); ?></p>
-  <p><span class="label">Date of Birth:</span> <?php echo htmlspecialchars($_POST['dob']); ?></p>
-</div>
-<div><button type="submit">Confirm</button></div>
+  <div class="receipt">
+    <h2>Registration information</h2>
+    <p><span class="label">Name:</span> <?php echo htmlspecialchars($_POST['name']); ?></p>
+    <p><span class="label">Email:</span> <?php echo htmlspecialchars($_POST['email']); ?></p>
+    <p><span class="label">Gender:</span> <?php echo htmlspecialchars($_POST['gender']); ?></p>
+    <p><span class="label">Country:</span> <?php echo htmlspecialchars($_POST['country']); ?></p>
+    <p><span class="label">Date of Birth:</span> <?php echo htmlspecialchars($_POST['dob']); ?></p>
+  </div>
+  <div>
+    <button onclick="window.location.href='login.html';">Confirm</button>
+  </div>
+  <div>
+    <button onclick="window.location.href='index.html';">Cancel</button>
+  </div>
+  <?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "registered";
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$name = $conn->real_escape_string($_POST['name']);
+$email = $conn->real_escape_string($_POST['email']);
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$gender = $conn->real_escape_string($_POST['gender']);
+$country = $conn->real_escape_string($_POST['country']);
+$dob = $conn->real_escape_string($_POST['dob']);
+$checkEmail = "SELECT * FROM userlist WHERE email = '$email'";
+$result = $conn->query($checkEmail);
+if ($result->num_rows > 0) {
+    die("<script>alert('Email already registered!');</script>");
+}
+$sql = "INSERT INTO userlist (name, email, password, gender, country, dob)
+        VALUES ('$name', '$email', '$password', '$gender', '$country', '$dob')";
+
+if (!$conn->query($sql)) {
+    die("Error: " . $conn->error);
+}
+?>
 </body>
 </html>
